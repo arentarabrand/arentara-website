@@ -1,13 +1,17 @@
-<header>
-  <div class="logo">Arentara</div>
-  <nav>
-    <a href="index.html" data-i18n="nav_home"></a>
-    <a href="pages/products.html" data-i18n="nav_products"></a>
-    <a href="pages/about.html" data-i18n="nav_about"></a>
-    <a href="pages/contact.html" data-i18n="nav_contact"></a>
-  </nav>
-  <div class="lang-toggle">
-    <button data-set-lang="id">ID</button>
-    <button data-set-lang="en">EN</button>
+<header class="site-header">
+  <div class="container">
+    <img src="assets/img/logo/arentara-logo.png" alt="Arentara Logo" class="logo" />
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html" data-lang="menu_home">Home</a></li>
+        <li><a href="pages/about.html" data-lang="menu_about">About</a></li>
+        <li><a href="pages/products.html" data-lang="menu_products">Products</a></li>
+        <li><a href="pages/contact.html" data-lang="menu_contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button onclick="setLang('id')">ID</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
   </div>
 </header>
