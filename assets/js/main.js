@@ -1,6 +1,6 @@
 // Load komponen HTML
 function loadComponent(id, path) {
-  fetch(path)
+  return fetch(path)
     .then(res => res.text())
     .then(html => {
       document.getElementById(id).innerHTML = html;
@@ -8,10 +8,14 @@ function loadComponent(id, path) {
 }
 
 // Load semua komponen
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("header", "components/header.html");
-  loadComponent("hero", "components/hero.html");
-  loadComponent("footer", "components/footer.html");
+document.addEventListener("DOMContentLoaded", async () => {
+  // Load komponen secara async biar nunggu semua selesai
+  await loadComponent("header", "components/header.html");
+  await loadComponent("hero", "components/hero.html");
+  await loadComponent("footer", "components/footer.html");
+
+  // Apply bahasa setelah semua komponen masuk
+  if (typeof applyLang === "function") applyLang();
 
   // Load preview produk
   fetch("data/products.json")
@@ -29,7 +33,4 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML += card;
       });
     });
-
-  // Inisialisasi bahasa
-  initLang();
 });
