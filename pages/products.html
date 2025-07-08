@@ -2,25 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Products – Arentara</title>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
-  <link rel="stylesheet" href="../assets/css/animations.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-lang="products_title">Our Products</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  
+  <script defer src="../assets/js/lang.js"></script>
+  <script defer src="../assets/js/main.js"></script>
 </head>
 <body>
+  <!-- Header -->
   <div id="header"></div>
 
-  <main class="products-page">
-    <section class="section fade-in-up">
-      <div class="container">
-        <h1 data-lang="products_title">Our Products</h1>
-        <div id="product-list" class="product-grid"></div>
-      </div>
-    </section>
+  <main class="section fade-in-up">
+    <div class="container">
+      <h1 data-lang="products_title">Our Products</h1>
+      <p data-lang="products_desc">
+        Discover our range of premium organic palm sugar products crafted from nature’s best.
+      </p>
+
+      <div id="product-card-container"></div>
+    </div>
   </main>
 
+  <!-- Footer -->
   <div id="footer"></div>
-
-  <script src="../assets/js/main.js"></script>
 </body>
 </html>
