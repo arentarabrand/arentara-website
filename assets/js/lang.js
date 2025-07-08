@@ -1,18 +1,25 @@
-async function setLanguage(lang) {
-  const res = await fetch(`lang/${lang}.json`);
-  const data = await res.json();
+let currentLang = localStorage.getItem("lang") || "en";
 
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.getAttribute("data-i18n");
-    if (data[key]) el.innerText = data[key];
-  });
-
-  localStorage.setItem("lang", lang);
+function setLang(langCode) {
+  currentLang = langCode;
+  localStorage.setItem("lang", langCode);
+  applyLang();
 }
 
-// Tombol ganti bahasa (optional)
-document.addEventListener("click", (e) => {
-  if (e.target.matches("[data-set-lang]")) {
-    setLanguage(e.target.getAttribute("data-set-lang"));
+async function applyLang() {
+  try {
+    const res = await fetch(`../lang/${currentLang}.json`);
+    const langData = await res.json();
+
+    document.querySelectorAll("[data-lang]").forEach(el => {
+      const key = el.getAttribute("data-lang");
+      if (langData[key]) el.innerText = langData[key];
+    });
+  } catch (err) {
+    console.error("Error loading language file:", err);
   }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang();
 });
