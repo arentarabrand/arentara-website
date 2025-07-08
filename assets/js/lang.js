@@ -8,18 +8,22 @@ function setLang(langCode) {
 
 async function applyLang() {
   try {
-    const res = await fetch(`../lang/${currentLang}.json`);
+    // Deteksi apakah file ini diakses dari folder /pages/
+    const base = location.pathname.includes("/pages/") ? "../" : "";
+    const res = await fetch(`${base}lang/${currentLang}.json`);
     const langData = await res.json();
 
     document.querySelectorAll("[data-lang]").forEach(el => {
       const key = el.getAttribute("data-lang");
-      if (langData[key]) el.innerText = langData[key];
+      if (langData[key]) {
+        if (el.tagName === "TITLE") {
+          document.title = langData[key];
+        } else {
+          el.innerText = langData[key];
+        }
+      }
     });
   } catch (err) {
     console.error("Error loading language file:", err);
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  applyLang();
-});
